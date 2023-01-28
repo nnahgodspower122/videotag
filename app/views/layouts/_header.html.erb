@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+ <%= image_tag "Mj35D9WC_400x400.jpg", size: "30x30" %> 
+  <a class="navbar-brand" style="text-align: left;" href="#"> Superails</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <% if current_user %>
+            <%= deep_active_link_to root_path do %>
+              <i class="fa-solid fa-house"></i>
+              Home
+            <% end %>
+            <%= deep_active_link_to posts_path do %>
+              <i class="fa-solid fa-gem"></i>
+              Posts
+            <% end %>
+            <%= deep_active_link_to users_path do %>
+              <i class="fa-solid fa-users"></i>
+              Users
+            <% end %>
+            <%= deep_active_link_to new_user_invitation_path do %>
+              <i class="fa-solid fa-user-plus"></i>
+              Invite a friend
+            <% end %>
+    </ul>
+     <li class="form-inline my-2 my-lg-0 nav-item dropdown ">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= current_user.email %>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to user_path(current_user), class: "dropdown-item #{'active fw-bold' if current_page?(user_path(current_user))}" do %>
+            <i class="fa-solid fa-user"></i>
+            My profile
+          <% end %>
+          <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
+            <i class="fa-solid fa-user-pen"></i>
+            Edit Account
+          <% end %>
+          <%= link_to users_sign_out_path, class: "dropdown-item" do %>
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Sign out
+          <% end %>
+        </div>
+      </li>
+    <% else %>
+    <%= link_to root_path, class: "nav-link" do %>
+        <i class="fa-solid fa-house-user"></i>
+        Home
+    <% end %>
+    <li class="form-inline my-2 my-lg-0">
+      <%= link_to user_session_path, class: "nav-link" do %>
+            Log in
+      <% end %>
+      <br>
+      <%= link_to new_user_registration_path, class: "nav-link" do %>
+            Register
+      <% end %>
+    </li>
+    <% end %>
+  </div>
+</nav>
+   
+<!--    
+    <%= link_to 'Home', root_path %>
+    <%= link_to 'Privacy', privacy_path %>
+    <%= link_to 'Terms', terms_path %>
+
+<% if current_user %>
+    <%= link_to current_user.email, edit_user_registration_path %>
+    <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-default btn-sm" %>
+<% else %>
+    <%= link_to "Log in", new_user_session_path %>
+    <%= link_to "Register", new_user_registration_path %>
+<% end %> 
+
+--> 
