@@ -26,6 +26,9 @@
 <%= 'invitation_accepted_at'.humanize %>:
 <%= boolean_label(user.invitation_accepted_at?) %>
 <br>
+<%= 'stripe_customer_id'.humanize %>:
+<%= user.stripe_customer_id %>
+<br>
 <%= 'invitee'.humanize %>:
 <%= user.invitees.count %>
 <% user.invitees.each do |invitee| %>
