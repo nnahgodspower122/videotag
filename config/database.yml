@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: superails_service_production
-  username: superails_service
-  password: <%= ENV["SUPERAILS_SERVICE_DATABASE_PASSWORD"] %>
+  username: mktgevtirjluyc
+  password: 3454d9a0a2ae201e289cf904b9677422019cb614e95aaef789444ee134229a73
