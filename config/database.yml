@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: superails_service_production
+  database: denmtjplr5mnak
   username: mktgevtirjluyc
   password: 3454d9a0a2ae201e289cf904b9677422019cb614e95aaef789444ee134229a73
