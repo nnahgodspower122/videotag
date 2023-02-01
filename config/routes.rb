@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "static_public#landing_page"
   
+  resources :webhooks, only: [:create]
+
   resources :posts
   resources :users, only: %i[index show]
 end

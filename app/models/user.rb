@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :restrict_with_error
 
   after_create do
-    customer = Stripe::Customer.create(email: email)
-    update(stripe_customer_id: customer.id)
+    Stripe::Customer.create(email: email)
+    # update(stripe_customer_id: customer.id)
   end
 end
