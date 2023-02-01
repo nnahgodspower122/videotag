@@ -74,13 +74,13 @@ test:
 # URL environment variable explicitly:
 #
 #   production:
-#     url: <%= ENV["MY_APP_DATABASE_URL"] %>
+     url: postgres://mktgevtirjluyc:3454d9a0a2ae201e289cf904b9677422019cb614e95aaef789444ee134229a73@ec2-34-197-84-74.compute-1.amazonaws.com:5432/denmtjplr5mnak
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-production:
-  <<: *default
-  database: denmtjplr5mnak
-  username: mktgevtirjluyc
-  password: 3454d9a0a2ae201e289cf904b9677422019cb614e95aaef789444ee134229a73
+# production:
+#   <<: *default
+#   database: superails_service_production
+#   username: superails_service
+#   password: <%= ENV["SUPERAILS_SERVICE_DATABASE_PASSWORD"] %>
