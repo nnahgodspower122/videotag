@@ -45,15 +45,20 @@
         </div>
       </li>
     <% else %>
-    <%= link_to root_path, class: "nav-link" do %>
-        <i class="fa-solid fa-house-user"></i>
-        Home
-    <% end %>
-    <li class="form-inline my-2 my-lg-0">
+    <ul class="navbar-nav mr-auto">
+      <%= link_to root_path, class: "nav-link" do %>
+          <i class="fa-solid fa-house-user"></i>
+          Home
+      <% end %>
+      <%= link_to pricing_path, class: "nav-link" do %>
+          <i class="fa-solid fa-shopping-cart"></i>
+          Pricing
+      <% end %>
+    </ul>
+    <li class="form-inline my-2 my-lg-0 nav-item ">
       <%= link_to user_session_path, class: "nav-link" do %>
             Log in
       <% end %>
-      <br>
       <%= link_to new_user_registration_path, class: "nav-link" do %>
             Register
       <% end %>
