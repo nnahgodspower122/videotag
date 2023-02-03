@@ -11,7 +11,7 @@ class CheckoutController < ApplicationController
         ],
         mode: 'subscription',
       })
-      redirect_to @session.url
+      redirect_to @session.url, allow_other_host: true
     end
     
   end
