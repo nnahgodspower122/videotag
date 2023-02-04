@@ -29,6 +29,15 @@
 <%= 'stripe_customer_id'.humanize %>:
 <%= user.stripe_customer_id %>
 <br>
+<%= 'plan'.humanize %>:
+<%= user.plan %>
+<br>
+<%= 'subscription_status'.humanize %>:
+<%= user.subscription_status %>
+<br>
+<%= 'current_period_end'.humanize %>:
+<%= user.current_period_end.strftime('%d %b %Y') if user.current_period_end %>
+<br>
 <%= 'invitee'.humanize %>:
 <%= user.invitees.count %>
 <% user.invitees.each do |invitee| %>

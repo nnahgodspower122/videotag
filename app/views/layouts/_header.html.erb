@@ -20,6 +20,7 @@
               <i class="fa-solid fa-users"></i>
               Users
             <% end %>
+            <%= link_to "Manage billing", billing_portal_create_path, method: :post, data: { disable_with: "validating..."}, class: "nav-link" %>
             <%= deep_active_link_to new_user_invitation_path do %>
               <i class="fa-solid fa-user-plus"></i>
               Invite a friend

@@ -8,3 +8,13 @@
 50.times do
     User.create(email: Faker::Internet.email, password: 123456)
 end
+
+Stripe::Price.create(
+    product: product,
+    currency: 'usd',
+    unit_amount: 900,
+    recurring:{
+        interval: "month"
+    },
+    lookup_key: 'pro_monthly'
+)
