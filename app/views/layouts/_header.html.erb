@@ -12,6 +12,14 @@
               <i class="fa-solid fa-house"></i>
               Home
             <% end %>
+            <%= link_to pricing_path, class: "nav-link" do %>
+                <i class="fa-solid fa-shopping-cart"></i>
+                Pricing
+            <% end %>
+            <%= link_to billing_portal_create_path, method: :post, data: { disable_with: "validating..."}, class: "nav-link" do %>
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+                Manage billing
+            <% end %>
             <%= deep_active_link_to posts_path do %>
               <i class="fa-solid fa-gem"></i>
               Posts
@@ -20,7 +28,6 @@
               <i class="fa-solid fa-users"></i>
               Users
             <% end %>
-            <%= link_to "Manage billing", billing_portal_create_path, method: :post, data: { disable_with: "validating..."}, class: "nav-link" %>
             <%= deep_active_link_to new_user_invitation_path do %>
               <i class="fa-solid fa-user-plus"></i>
               Invite a friend
