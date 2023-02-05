@@ -58,6 +58,10 @@
           <i class="fa-solid fa-house-user"></i>
           Home
       <% end %>
+      <%= deep_active_link_to posts_path do %>
+          <i class="fa-solid fa-gem"></i>
+          Posts
+      <% end %>
       <%= link_to pricing_path, class: "nav-link" do %>
           <i class="fa-solid fa-shopping-cart"></i>
           Pricing

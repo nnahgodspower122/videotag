@@ -1,18 +1,20 @@
 class PostsController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[index show]
   before_action :set_post, only: %i[ show edit update destroy ]
 
   def index
+    @posts = Post.all
     # if current_user.active?
-    if current_user.subscription_status != "active"
-      @posts = Post.free
-    else
-       @posts = Post.all
-     end
+    # if current_user&.subscription_status != "active"
+    #   @posts = Post.free
+    # else
+    #    @posts = Post.all
+    #  end
   end
 
   def show
-    if @post.premium? && current_user.subscription_status != 'active'
-      redirect to posts_path, alert: 'You are not a premium subscriber'
+    if @post.premium? && current_user&.subscription_status != 'active'
+      redirect_to posts_path, alert: 'You are not a premium subscriber'
     end
   end
 
@@ -21,6 +23,9 @@ class PostsController < ApplicationController
   end
 
   def edit
+    unless @post.user == current_user
+      redirect_to posts_path, alert: 'You are not authorized'
+    end
   end
 
   def create
@@ -38,24 +43,32 @@ class PostsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
-        format.json { render :show, status: :ok, location: @post }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+    unless @post.user == current_user
+      redirect_to posts_path, alert: 'You are not authorized'
+    else 
+      respond_to do |format|
+        if @post.update(post_params)
+          redirect_to post_url(@post), notice: "Post was successfully updated."
+        else
+          render :edit, status: :unprocessable_entity
+        end
       end
     end
   end
 
   def destroy
-    @post.destroy
-
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
-      format.json { head :no_content }
+    unless @post.user == current_user
+      redirect_to posts_path, alert: 'You are not authorized'
+    else 
+      @post.destroy
+      redirect_to posts_url, notice: "Post was successfully destroyed."
     end
+    # @post.destroy
+
+    # respond_to do |format|
+    #   format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
+    #   format.json { head :no_content }
+    # end
   end
 
   private
