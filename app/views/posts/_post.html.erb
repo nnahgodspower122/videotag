@@ -1,27 +1,30 @@
-<div id="<%= dom_id post %>">
-  <p>
-    <strong>Title:</strong>
-    <!--<%= post.title %>-->
-    <%= link_to_unless_current post.title, post %>
-  </p>
+<div class="card">
+  <div class="card-body">
+    <p>
+      <strong>Title:</strong>
+      <!--<%= post.title %>-->
+      <%= link_to_unless_current post.title, post %>
+    </p>
 
-  <p>
-    <strong>Body:</strong>
-    <%= markdown(post.body) %>
-  </p>
+    <p>
+      <strong>Body:</strong>
+      <%= markdown(post.body) %>
+    </p>
 
-  <p>
-    <%= premium_label(post.premium) %>
-  </p>
+  </div>
+  <div class="card-footer">
+    <p>
+      <%= premium_label(post.premium) %>
+    </p>
+    <p>
+      <strong>By:</strong>
+      <%= link_to post.user.email, post.user %>
+    </p>
 
-  <p>
-    <strong>By:</strong>
-    <%= link_to post.user.email, post.user %>
-  </p>
-
-  <p>
-  <strong>Created_at:</strong>
-  <%= post.created_at.strftime('%d %b %Y') %>
-  </p>
+    <p>
+      <strong>Created_at:</strong>
+      <%= post.created_at.strftime('%d %b %Y') %>
+    </p>
+  </div>
 </div>
 
