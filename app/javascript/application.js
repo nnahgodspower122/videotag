@@ -3,3 +3,5 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "bootstrap"
 import "@fortawesome/fontawesome-free/css/all"
+// require("@rails/ujs").start()
+import '@rails/ujs'
