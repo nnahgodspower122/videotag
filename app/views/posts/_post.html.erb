@@ -11,6 +11,12 @@
       <%= markdown(post.body) %>
     </p>
 
+    <% if current_user %>
+      <%= render 'posts/upvote_link', post: post %>
+      <%= render 'posts/like_count', post: post %>
+      <%= render 'posts/downvote_link', post: post %>
+    <% end %>
+
   </div>
   <div class="card-footer">
     <p>

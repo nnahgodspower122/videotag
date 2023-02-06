@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ show edit update destroy upvote downvote ]
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
     # if current_user.active?
     # if current_user&.subscription_status != "active"
     #   @posts = Post.free
@@ -26,6 +26,24 @@ class PostsController < ApplicationController
     unless @post.user == current_user
       redirect_to posts_path, alert: 'You are not authorized'
     end
+  end
+
+  def upvote
+    if current_user.voted_up_on? @post
+      @post.unvote_by current_user
+    else
+      @post.upvote_by current_user
+    end
+    redirect_to @post
+  end
+
+  def downvote
+    if current_user.voted_down_on? @post
+      @post.unvote_by current_user
+    else
+      @post.downvote_by current_user
+    end
+    redirect_to @post
   end
 
   def create
