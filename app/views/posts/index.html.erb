@@ -1,6 +1,21 @@
 <p style="color: green"><%= notice %></p>
+<h1>
+    Post: <%= @posts.length %> /
+    <%= Post.count %>
+</h1>
 
-<h1>Posts</h1>
+<%= search_form_for @q do |f| %>
+    <%= f.label :title_cont %>
+    <%= f.search_field :title_cont %>
+    <%= f.submit %>
+    <% if params[:q].present? %>
+        <%= link_to users_path do %>
+            <i class="fa-solid fa-rotate-right" style="text-transform: uppercase;"> Refresh</i>
+        <% end %>
+    <% end %>
+<% end %>
+
+<hr>
 
 <div id="posts">
   <% @posts.each do |post| %>
@@ -13,3 +28,5 @@
 </div>
 
 <%= link_to "New post", new_post_path %>
+
+<%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>

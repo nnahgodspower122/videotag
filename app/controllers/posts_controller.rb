@@ -4,6 +4,8 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order(created_at: :desc)
+    @q = Post.order(created_at: :asc).ransack(params[:q])
+    @pagy, @posts = pagy(@q.result(distinct: true))
     # if current_user.active?
     # if current_user&.subscription_status != "active"
     #   @posts = Post.free
