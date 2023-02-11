@@ -6,6 +6,11 @@
       <%= link_to_unless_current post.title, post %>
     </p>
 
+     <p class="fst-italic">
+      <strong>Description:</strong>
+      <%= post.description %>
+    </p>
+
     <p>
       <strong>Body:</strong>
       <%= markdown(post.body) %>

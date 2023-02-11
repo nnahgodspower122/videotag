@@ -13,7 +13,12 @@
 
   <div>
     <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title, style: 'width: 100%' %>
+    <%= form.text_field :title, style: 'width: 100%', maxlength: 140 %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description, style: 'width: 100%', maxlength: 200 %>
   </div>
 
   <div>
