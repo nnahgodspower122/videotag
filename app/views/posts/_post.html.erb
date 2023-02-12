@@ -11,10 +11,12 @@
       <%= post.description %>
     </p>
 
-    <p>
-      <strong>Body:</strong>
-      <%= markdown(post.body) %>
-    </p>
+    <% if controller_name == 'posts' && action_name == 'show' %>
+      <p>
+        <strong>Body:</strong>
+        <%= markdown(post.body) %>
+      </p>
+    <% end %>
 
     <% if current_user %>
       <%= render 'posts/upvote_link', post: post %>
