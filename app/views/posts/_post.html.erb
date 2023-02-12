@@ -1,34 +1,28 @@
 <div class="card">
   <div class="card-body">
-    <p>
-      <strong>Title:</strong>
-      <!--<%= post.title %>-->
+    <h3>
+      <%= premium_label(post.premium) %>
       <%= link_to_unless_current post.title, post %>
-    </p>
+    </h3>
 
      <p class="fst-italic">
-      <strong>Description:</strong>
       <%= post.description %>
     </p>
 
     <% if controller_name == 'posts' && action_name == 'show' %>
       <p>
-        <strong>Body:</strong>
         <%= markdown(post.body) %>
       </p>
     <% end %>
 
-    <% if current_user %>
+    <div class="d-flex">
       <%= render 'posts/upvote_link', post: post %>
       <%= render 'posts/like_count', post: post %>
       <%= render 'posts/downvote_link', post: post %>
-    <% end %>
+    </div>
 
   </div>
   <div class="card-footer">
-    <p>
-      <%= premium_label(post.premium) %>
-    </p>
     <p>
       <strong>By:</strong>
       <%= link_to post.user.email, post.user %>
@@ -40,4 +34,4 @@
     </p>
   </div>
 </div>
-
+<br>
