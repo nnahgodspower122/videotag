@@ -1,18 +1,30 @@
-<h1>Pricing</h1>
+<div class="text-center">
+    <h1>Pricing</h1>
+</div>
 
-<% @pricing.each do |price| %>
-    <br>
-    <b><%= price.product.name %></b>
-    <small><%= price.id %></small>
-    <b>
-        <%= price.unit_amount/100 %>
-        <%= price.currency %>
-        <%= price.recurring.interval %>
-    </b>
-    <% if user_signed_in? %>
-        <%= link_to "Pay #{price.unit_amount/100} per #{price.recurring.interval}", checkout_create_path(price: price.id), method: :post, remote: true, data: { disable_with: "validating..."} %>
-    <% end %>
-<% end %>
-
- 
-
+<div class="row row-cols-1 row-cols-md-2 g-4">
+   <% @pricing.each do |price| %>
+   <div class="col">
+     <div class="card shadow">
+       <div class="card-body">
+         <h5 class="card-title"><%= price.lookup_key.humanize %></h5>
+         <p class="card-text">
+            <%= price.unit_amount/100 %>
+            <%= price.currency %>
+            <%= price.recurring.interval %>
+            <br>
+            <% if user_signed_in? %>
+                <%= link_to "Pay #{price.unit_amount/100} per #{price.recurring.interval}", 
+                    checkout_create_path(price: price.id), 
+                    method: :post, 
+                    remote: true, 
+                    data: { disable_with: "validating..."},
+                    class: 'btn btn-sm btn-block btn-success' 
+                %>
+            <% end %>
+         </p>
+       </div>
+    </div>
+  </div>     
+ <% end %>   
+</div>

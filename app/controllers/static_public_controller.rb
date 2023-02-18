@@ -1,5 +1,5 @@
 class StaticPublicController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[landing_page pricing]
+  skip_before_action :authenticate_user!, only: %i[landing_page pricing about]
   
   def landing_page
   end

@@ -77,18 +77,19 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    unless @post.user == current_user
-      redirect_to posts_path, alert: 'You are not authorized'
-    else 
-      @post.destroy
-      redirect_to posts_url, notice: "Post was successfully destroyed."
-    end
-    # @post.destroy
-
-    # respond_to do |format|
-    #   format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
-    #   format.json { head :no_content }
+    # unless @post.user == current_user
+    #   redirect_to posts_path, alert: 'You are not authorized'
+    # else 
+    #   @post.destroy
+    #   redirect_to posts_url, notice: "Post was successfully destroyed."
     # end
+     @post.destroy
+
+     respond_to do |format|
+       format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
+       format.json { head :no_content }
+     end
+    
   end
 
   private

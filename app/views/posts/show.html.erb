@@ -1,16 +1,18 @@
-<div class="card">
+
   <p style="color: green"><%= notice %></p>
 
   <%= render @post %>
 
-  <div>
-    <div class="card-footer">
+    
       <% if current_user == @post.user %>
-        <%= link_to "Edit this post", edit_post_path(@post) %> |
-        <%= link_to "Back to posts", posts_path %>
+        <div class='card-footer'>
+          <%= link_to "Edit this post", edit_post_path(@post), class: 'btn btn-sm btn-secondary' %> |
+         <!-- <%# <%= link_to "Destroy this post", @post, method: :destroy, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %> %> -->
+          <%= link_to "Destroy", @post, data: { "turbo-method": :delete }, class: 'btn btn-sm btn-danger' %>
 
-        <%= button_to "Destroy this post", @post, method: :delete %>
+          <br><br>
+          <%= link_to "Back to posts", posts_path, class: 'btn btn-sm btn-secondary' %>
+        </div>
       <% end %>
-    </div>
-  </div>
-</div>
+
+

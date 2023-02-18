@@ -5,7 +5,7 @@
 </h1>
 
 <%= search_form_for @q do |f| %>
-    <%= f.label :title_cont %>
+    <%= f.label :title %>
     <%= f.search_field :title_cont %>
 
     <%= f.select :premium_eq, [['Premium', true], ['Free', false]], include_blank: 'Type' %>
@@ -14,7 +14,8 @@
     <%= f.submit %>
     <% if params[:q].present? %>
         <%= link_to users_path do %>
-            <i class="fa-solid fa-rotate-right" style="text-transform: uppercase;"></i>
+            <i class="fa-solid fa-redo"></i>
+            Clear search
         <% end %>
     <% end %>
 <% end %>
@@ -24,6 +25,7 @@
 <div id="posts">
   <%= render @posts %>
 </div>
+<br>
 
 <%= link_to "New post", new_post_path %>
 

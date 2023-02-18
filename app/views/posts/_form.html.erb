@@ -1,8 +1,6 @@
 <%= form_with(model: post) do |form| %>
   <% if post.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
+    <div class='text-danger'>
       <ul>
         <% post.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -26,6 +24,7 @@
     <%= form.text_area :body,
       style: 'width: 100%',
       rows: 8,
+      data: { controller: "textarea-autogrow" },
       maxlength: 5000,
       placeholder: 'Type your blog post here'
     %>

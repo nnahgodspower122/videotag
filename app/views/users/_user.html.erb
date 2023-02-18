@@ -39,7 +39,7 @@
         <%= user.subscription_status %>
         <br>
         <%= 'current_period_end'.humanize %>:
-        <%= user.current_period_end.strftime('%d %b %Y') if user.current_period_end %>
+        <%= user.current_period_end&.strftime('%d %b %Y') %>
         <br>
         <%= 'invitee'.humanize %>:
         <%= user.invitees.count %>
