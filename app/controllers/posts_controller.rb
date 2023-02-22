@@ -30,23 +30,26 @@ class PostsController < ApplicationController
     end
   end
 
-  def upvote
-    if current_user.voted_up_on? @post
-      @post.unvote_by current_user
-    else
-      @post.upvote_by current_user
-    end
-    redirect_to @post
-  end
+  # def upvote
+  #   # @post = Post.find(params[:id])
+  #   # @post.upvote_by current_user
+  #   # render "vote.js.erb"
+  #   if current_user.voted_up_on? @post
+  #     @post.unvote_by current_user
+  #   else
+  #     @post.upvote_by current_user
+  #   end
+  #   redirect_to @post
+  # end
 
-  def downvote
-    if current_user.voted_down_on? @post
-      @post.unvote_by current_user
-    else
-      @post.downvote_by current_user
-    end
-    redirect_to @post
-  end
+  # def downvote
+  #   if current_user.voted_down_on? @post
+  #     @post.unvote_by current_user
+  #   else
+  #     @post.downvote_by current_user
+  #   end
+  #   redirect_to @post
+  # end
 
   def create
     @post = Post.new(post_params)

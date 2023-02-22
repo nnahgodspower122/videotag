@@ -14,14 +14,9 @@
         <%= markdown(post.body) %>
       </p>
     <% end %>
+    <%= Like.count %>likes
+</div>
 
-    <div class="d-flex">
-      <%= render 'posts/upvote_link', post: post %>
-      <%= render 'posts/like_count', post: post %>
-      <%= render 'posts/downvote_link', post: post %>
-    </div>
-
-  </div>
   <div class="card-footer">
     <p>
       <strong>By:</strong>

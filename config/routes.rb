@@ -17,11 +17,12 @@ Rails.application.routes.draw do
   root "static_public#landing_page"
   
   resources :webhooks, only: [:create]
+  resources :likes, only: [:create, :destroy]
 
   resources :posts do
     member do
-      get "upvote", to: "posts#upvote"
-      get "downvote", to: "posts#downvote"
+      patch "upvote", to: "posts#upvote"
+      patch "downvote", to: "posts#downvote"
     end
   end
   resources :users, only: %i[index show]
