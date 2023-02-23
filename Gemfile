@@ -82,3 +82,4 @@ gem 'redcarpet'
 gem 'pry', '~> 0.13.1'
 gem 'stripe-rails'
 gem 'brakeman', group: :development
+gem 'friendly_id', '~> 5.4.0'

@@ -4,6 +4,11 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: {maximum: 140}
   validates :description, presence: true, length: {maximum: 200}
   validates :body, presence: true, length: {maximum: 5000}
+  has_many :likes
+
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
 
   scope :free, -> {where(premium: false)}
   scope :premium, -> {where(premium: true)}
