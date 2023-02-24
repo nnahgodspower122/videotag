@@ -132,6 +132,8 @@ GEM
     importmap-rails (1.1.5)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
+    invisible_captcha (2.0.0)
+      rails (>= 5.0)
     io-console (0.6.0)
     irb (1.6.2)
       reline (>= 0.3.0)
@@ -316,6 +318,7 @@ DEPENDENCIES
   font-awesome-sass (~> 6.2.1)
   friendly_id (~> 5.4.0)
   importmap-rails
+  invisible_captcha
   jbuilder
   omniauth-google-oauth2
   pagy (~> 6.0)
