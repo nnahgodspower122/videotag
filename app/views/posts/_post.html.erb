@@ -2,17 +2,31 @@
   <div class="card-body">
     <h3>
       <%= premium_label(post.premium) %>
-      <%= link_to_unless_current post.title, post %>
+      <%= link_to_unless_current highlight(post.title, params.dig(:q, :title_or_description_cont)), post %>
     </h3>
 
      <p class="fst-italic">
-      <%= post.description %>
+      <%= highlight(post.description, params.dig(:q, :title_or_description_cont)) %>
     </p>
 
     <% if controller_name == 'posts' && action_name == 'show' %>
       <p>
         <%= markdown(post.body) %>
       </p>
+    <% end %>
+
+    <% if Like.nil? %>
+      <form action="/likes" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="hidden" name="like[post_id]" value="<%= @post_id %>">
+        <input type="submit" value="Like">
+      </form>
+    <% else %>
+      <form action="<%= like_path([id: @like_id]) %>" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="UnLike">
+      </form>
     <% end %>
 </div>
 

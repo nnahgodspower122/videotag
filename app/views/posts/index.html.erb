@@ -6,7 +6,7 @@
 
 <%= search_form_for @q do |f| %>
     <%= f.label :title %>
-    <%= f.search_field :title_cont %>
+    <%= f.search_field :title_or_description_cont %>
 
     <%= f.select :premium_eq, [['Premium', true], ['Free', false]], include_blank: 'Type' %>
     <%= f.collection_select :user_email_cont, User.joins(:posts).distinct, :email, :email, include_blank: 'Author' %>
