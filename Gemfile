@@ -78,6 +78,7 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main
 gem 'pagy', '~> 6.0'
 gem 'ransack'
 gem 'devise_invitable', '~> 2.0.0'
+gem 'rouge'
 gem 'redcarpet'
 gem 'pry', '~> 0.13.1'
 gem 'stripe-rails'
