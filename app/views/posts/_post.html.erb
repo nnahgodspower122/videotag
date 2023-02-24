@@ -15,19 +15,6 @@
       </p>
     <% end %>
 
-    <% if Like.nil? %>
-      <form action="/likes" method="post">
-        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-        <input type="hidden" name="like[post_id]" value="<%= @post_id %>">
-        <input type="submit" value="Like">
-      </form>
-    <% else %>
-      <form action="<%= like_path([id: @like_id]) %>" method="post">
-        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="submit" value="UnLike">
-      </form>
-    <% end %>
 </div>
 
   <div class="card-footer">
