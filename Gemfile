@@ -85,3 +85,4 @@ gem 'stripe-rails'
 gem 'brakeman', group: :development
 gem 'friendly_id', '~> 5.4.0'
 gem 'invisible_captcha'
+gem 'meta_tags'

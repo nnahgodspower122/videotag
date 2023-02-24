@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Videotag</title>
+    <title><%= content_for?(:title) ? yield(:title) : Rails.application.class.module_parent.name %></title>
+     
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
