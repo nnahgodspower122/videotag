@@ -3,16 +3,16 @@
 
   <%= render @post %>
 
-    
+  Comments: <%= @comments.count %><br>
+  <%= render @comments %>
+  <%= link_to 'Add comment', new_post_comment_path(@commentable)%>
       <% if current_user == @post.user %>
         <div class='card-footer'>
           <%= link_to "Edit this post", edit_post_path(@post), class: 'btn btn-sm btn-secondary' %> |
-         <!-- <%# <%= link_to "Destroy this post", @post, method: :destroy, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %> %> -->
-          <%= link_to "Destroy", @post, data: { "turbo-method": :delete }, class: 'btn btn-sm btn-danger' %>
-
-          <br><br>
           <%= link_to "Back to posts", posts_path, class: 'btn btn-sm btn-secondary' %>
-        </div>
+          <br><br>
+          <%= button_to "Delete", @post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-secondary'%>
+          </div>
       <% end %>
 
 

@@ -5,7 +5,8 @@ class Post < ApplicationRecord
   validates :description, presence: true, length: {maximum: 200}
   validates :body, presence: true, length: {maximum: 5000}
   has_many :likes
-
+  has_many :comments, as: :commentable
+  
   extend FriendlyId
   friendly_id :title, use: [:slugged, :finders, :history]
 

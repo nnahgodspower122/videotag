@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :likes, only: [:create, :destroy]
 
   resources :posts do
+    resources :comments, only: %i[new create destroy]
     member do
       patch "upvote", to: "posts#upvote"
       patch "downvote", to: "posts#downvote"
