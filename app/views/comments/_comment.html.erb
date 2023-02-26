@@ -1,5 +1,7 @@
-<%= comment.created_at %>
-<%= comment.body %>
-<%= link_to comment.user.email, comment.user %>
-<%= button_to "Delete comment", [@commentable, comment], method: :delete%>
-<br>
+<div class="comment">
+    <%= comment.created_at %>
+    <%= comment.body %>
+    <%= link_to comment.user.email, comment.user %>
+    <%= button_to "Delete comment", [@commentable, comment], method: :delete%>
+    <br>
+</div>
