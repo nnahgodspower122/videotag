@@ -27,11 +27,17 @@ class CommentsController < ApplicationController
 
     private
 
-    def set_commentable
-        @commentable = Post.find(params[:post_id])
-    end 
-
     def comment_params
         params.require(:comment).permit(:body)
     end
+    
+    def set_commentable
+        if params[:post_id].present?
+            @commentable = Post.find(params[:post_id])
+        elsif params[:comment_id].present?
+            @commentable = Comment.find(params[:comment_id])
+        end
+    end 
+
+    
 end

@@ -23,6 +23,7 @@ class PostsController < ApplicationController
       redirect_to posts_path, alert: 'You are not a premium subscriber'
     end
 
+    @comment = Comment.new
     @commentable = @post
     @comments = @post.comments
   end

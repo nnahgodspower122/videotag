@@ -19,6 +19,10 @@ Rails.application.routes.draw do
   resources :webhooks, only: [:create]
   resources :likes, only: [:create, :destroy]
 
+  resources :comments, only:[] do
+    resources :comments, only: %i[new create destroy]
+  end
+
   resources :posts do
     resources :comments, only: %i[new create destroy]
     member do

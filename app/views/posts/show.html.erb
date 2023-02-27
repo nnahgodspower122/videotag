@@ -5,8 +5,8 @@
 
   Comments: <%= @comments.count %><br>
   <%= render @comments %>
-  <%= link_to 'Add comment', new_post_comment_path(@commentable)%>
-      <% if current_user == @post.user %>
+  <%= render template: 'comments/new' %> <br>
+     <% if current_user == @post.user %>
         <div class='card-footer'>
           <%= link_to "Edit this post", edit_post_path(@post), class: 'btn btn-sm btn-secondary' %> |
           <%= link_to "Back to posts", posts_path, class: 'btn btn-sm btn-secondary' %>
