@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   root "static_public#landing_page"
   
   resources :webhooks, only: [:create]
-  resources :likes, only: [:create, :destroy]
 
   resources :comments, only:[] do
     resources :comments, only: %i[new create destroy]
@@ -26,8 +25,6 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, only: %i[new create destroy]
     member do
-      patch "upvote", to: "posts#upvote"
-      patch "downvote", to: "posts#downvote"
     end
   end
   resources :users, only: %i[index show]

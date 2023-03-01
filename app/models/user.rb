@@ -7,7 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :trackable, :confirmable
 
-  has_many :invitees, class_name: 'User', foreign_key: :invited_by_id, inverse_of: :id, dependent: :destroy
+  has_many :invitees, class_name: 'User', foreign_key: :invited_by_id, dependent: :destroy
   has_many :posts, dependent: :restrict_with_error
   has_many :likes, dependent: :destroy
 
