@@ -21,3 +21,18 @@ Style/EmptyMethod:
 
 Lint/UnusedMethodArgument:
   Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Lint/UselessAssignment:
+  Enabled: false
+
+rubocop:enable Rails/OutputSafety:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
