@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     end
 
     def create 
-        @comment = @commentable.comments.build(comment_params)
+        @comment = @commentable.comments.build(comment_params.merge({user: current_user}))
         @comment.user = current_user
 
         if @comment.save

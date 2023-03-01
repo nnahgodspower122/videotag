@@ -4,4 +4,5 @@ import "controllers"
 import "bootstrap"
 import "@fortawesome/fontawesome-free/css/all"
 // require("@rails/ujs").start()
-import '@rails/ujs'
+import Rails from '@rails/ujs';
+Rails.start();
