@@ -1,8 +1,10 @@
-class ApplicationController < ActionController::Base
-    before_action :authenticate_user!
-    include Pagy::Backend
+# frozen_string_literal: true
 
-    def after_sign_in_path_for(resource)
-        user_path(resource)
-    end
+class ApplicationController < ActionController::Base
+  before_action :authenticate_user!
+  include Pagy::Backend
+
+  def after_sign_in_path_for(resource)
+    user_path(resource)
+  end
 end

@@ -1,11 +1,11 @@
-class BillingPortalController < ApplicationController
+# frozen_string_literal: true
 
-    def create  
-      portal_session = Stripe::BillingPortal::Session.create({
-        customer: current_user.stripe_customer_id,
-        return_url: root_url,
-      })
-      redirect_to portal_session.url, allow_other_host: true
-    end
-  
+class BillingPortalController < ApplicationController
+  def create
+    portal_session = Stripe::BillingPortal::Session.create({
+                                                             customer: current_user.stripe_customer_id,
+                                                             return_url: root_url
+                                                           })
+    redirect_to portal_session.url, allow_other_host: true
   end
+end

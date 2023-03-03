@@ -1,0 +1,38 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 3.0.0
+  SuggestExtensions: false
+  Exclude:
+    - '**/db/**/*'
+    - 'config/**/*'
+    - 'bin/*'
+    - config.ru
+
+Style/Documentation:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false
+
+Lint/UnusedMethodArgument:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Lint/UselessAssignment:
+  Enabled: false
+
+rubocop:enable Rails/OutputSafety:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false

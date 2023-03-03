@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
-  before_action :set_post, only: %i[ show edit update destroy upvote downvote ]
+  before_action :set_post, only: %i[show edit update destroy]
 
   def index
     @posts = Post.all.order(created_at: :desc)
@@ -17,8 +19,8 @@ class PostsController < ApplicationController
   def show
     # set_meta_tags title: 'ffff',
     #   description: 'ddddd',
-    #   keywords: 'seo, rails, ruby' 
-   
+    #   keywords: 'seo, rails, ruby'
+
     if @post.premium? && current_user&.subscription_status != 'active'
       redirect_to posts_path, alert: 'You are not a premium subscriber'
     end
@@ -33,9 +35,9 @@ class PostsController < ApplicationController
   end
 
   def edit
-    unless @post.user == current_user
-      redirect_to posts_path, alert: 'You are not authorized'
-    end
+    return if @post.user == current_user
+
+    redirect_to posts_path, alert: 'You are not authorized'
   end
 
   # def upvote
@@ -64,7 +66,7 @@ class PostsController < ApplicationController
     @post.user = current_user
     respond_to do |format|
       if @post.save
-        format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
+        format.html { redirect_to post_url(@post), notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -74,41 +76,41 @@ class PostsController < ApplicationController
   end
 
   def update
-    unless @post.user == current_user
-      redirect_to posts_path, alert: 'You are not authorized'
-    else 
+    if @post.user == current_user
       respond_to do |format|
         if @post.update(post_params)
-          format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
+          format.html { redirect_to post_url(@post), notice: 'Post was successfully updated.' }
         else
           render :edit, status: :unprocessable_entity
         end
       end
+    else
+      redirect_to posts_path, alert: 'You are not authorized'
     end
   end
 
   def destroy
     # unless @post.user == current_user
     #   redirect_to posts_path, alert: 'You are not authorized'
-    # else 
+    # else
     #   @post.destroy
     #   redirect_to posts_url, notice: "Post was successfully destroyed."
     # end
-     @post.destroy
+    @post.destroy
 
-     respond_to do |format|
-       format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
-       format.json { head :no_content }
-     end
-    
+    respond_to do |format|
+      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    def post_params
-      params.require(:post).permit(:title, :body, :premium, :description)
-    end
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def post_params
+    params.require(:post).permit(:title, :body, :premium, :description)
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WebhooksController < ApplicationController
   skip_before_action :authenticate_user!
   skip_before_action :verify_authenticity_token
@@ -16,8 +18,8 @@ class WebhooksController < ApplicationController
       return
     rescue Stripe::SignatureVerificationError => e
       # Invalid signature
-      puts "Signature error"
-      p e
+      Rails.logger.debug 'Signature error'
+      Rails.logger.debug e
       return
     end
 
@@ -27,14 +29,14 @@ class WebhooksController < ApplicationController
       customer = event.data.object
       @user = User.find_by(email: customer.email)
       @user.update(stripe_customer_id: customer.id)
-      when 'customer.subscription.updated', 'customer.subscription.deleted', 'customer.subscription.created'
-        subscription = event.data.object
-        @user = User.find_by(stripe_customer_id: subscription.customer)
-        @user.update(
-          subscription_status: subscription.status,
-          plan: subscription.items.data[0].price.lookup_key,
-          current_period_end: Time.at(subscription.current_period_end).to_datetime,
-        )
+    when 'customer.subscription.updated', 'customer.subscription.deleted', 'customer.subscription.created'
+      subscription = event.data.object
+      @user = User.find_by(stripe_customer_id: subscription.customer)
+      @user.update(
+        subscription_status: subscription.status,
+        plan: subscription.items.data[0].price.lookup_key,
+        current_period_end: Time.zone.at(subscription.current_period_end).to_datetime
+      )
     end
 
     render json: { message: 'success' }
