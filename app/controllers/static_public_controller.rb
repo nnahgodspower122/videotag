@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class StaticPublicController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[landing_page pricing about]
 
@@ -19,4 +18,9 @@ class StaticPublicController < ApplicationController
 
   def terms
   end
+
+  def hello 
+    HelloJob.perform_at(10.seconds.from_now)
+  end
+
 end

@@ -90,3 +90,5 @@ gem 'friendly_id', '~> 5.4.0'
 gem 'invisible_captcha'
 gem 'meta_tags'
 gem 'traceroute'
+gem "sidekiq", "~> 7.0"
+gem 'redis', '~> 5.0', '>= 5.0.6'
