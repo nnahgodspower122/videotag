@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class HelloJob
   include Sidekiq::Job
 
   def perform(*_args)
-    puts 'Hello world!'
+    Rails.logger.debug 'Hello world!'
   end
 end

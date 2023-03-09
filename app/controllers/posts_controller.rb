@@ -14,6 +14,7 @@ class PostsController < ApplicationController
     # else
     #    @posts = Post.all
     #  end
+    render json: { response: 'successful' }
   end
 
   def show

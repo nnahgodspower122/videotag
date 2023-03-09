@@ -55,6 +55,8 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'rubocop-rails', require: false
+  gem 'rspec-rails', '~> 6.0.0'
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -90,5 +92,5 @@ gem 'friendly_id', '~> 5.4.0'
 gem 'invisible_captcha'
 gem 'meta_tags'
 gem 'traceroute'
-gem "sidekiq", "~> 7.0"
+gem 'sidekiq', '~> 7.0'
 gem 'redis', '~> 5.0', '>= 5.0.6'
