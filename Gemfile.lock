@@ -127,7 +127,6 @@ GEM
       sassc (~> 2.0)
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
-    geocoder (1.8.1)
     globalid (1.0.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
@@ -383,7 +382,6 @@ DEPENDENCIES
   faker!
   font-awesome-sass (~> 6.2.1)
   friendly_id (~> 5.4.0)
-  geocoder (~> 1.8)
   importmap-rails
   invisible_captcha
   jbuilder
